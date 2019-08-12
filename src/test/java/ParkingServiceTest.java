@@ -42,4 +42,31 @@ public class ParkingServiceTest {
         parkingService.park(car);
         parkingService.park(car);
     }
+
+    @Test
+    public void should_park_and_pickup_three_cars() {
+        Car carA = new Car();
+        Car carB = new Car();
+        Car carC = new Car();
+
+        ParkingService parkingService = new ParkingService();
+        Ticket ticketA = parkingService.park(carA);
+        Ticket ticketB = parkingService.park(carB);
+        Ticket ticketC = parkingService.park(carC);
+
+        Assert.assertThat(carA, is(parkingService.pickup(ticketA)));
+        Assert.assertThat(carB, is(parkingService.pickup(ticketB)));
+        Assert.assertThat(carC, is(parkingService.pickup(ticketC)));
+    }
+
+    @Test(expected = IllegalTicketException.class)
+    public void should_throw_exception_when_park_one_time_and_pick_two_times() {
+        Car car = new Car();
+
+        ParkingService parkingService = new ParkingService();
+        Ticket ticket = parkingService.park(car);
+
+        parkingService.pickup(ticket);
+        parkingService.pickup(ticket);
+    }
 }
