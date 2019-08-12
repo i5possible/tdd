@@ -15,6 +15,9 @@ public class ParkingService {
 
     public Ticket park(Car car) {
         Ticket ticket = new Ticket();
+        if (cars.containsValue(car)) {
+            throw new IllegalCarException();
+        }
         cars.put(ticket, car);
         return ticket;
     }

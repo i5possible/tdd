@@ -33,4 +33,13 @@ public class ParkingServiceTest {
 
         Assert.assertThat(expected, is(actual));
     }
+
+    @Test(expected = IllegalCarException.class)
+    public void should_throw_exception_when_park_one_car_two_times() {
+        Car car = new Car();
+
+        ParkingService parkingService = new ParkingService();
+        parkingService.park(car);
+        parkingService.park(car);
+    }
 }
