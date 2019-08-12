@@ -16,20 +16,21 @@ public class ParkingServiceTest {
     }
 
     @Test
-    public void should_park_car_successfully() {
-        Car car = new Car();
-
-        ParkingService parkingService = new ParkingService();
-        Ticket ticket = parkingService.park(car);
-
-        Assert.assertThat(ticket, is(car));
-    }
-
-    @Test
     public void should_get_different_ticket_when_park_two_cars() {
         Car carA = new Car();
         Car carB = new Car();
         ParkingService parkingService = new ParkingService();
         Assert.assertThat(parkingService.park(carA), not(equalTo(parkingService.park(carB))));
+    }
+
+    @Test
+    public void should_get_the_car_by_ticket() {
+        Car expected = new Car();
+
+        ParkingService parkingService = new ParkingService();
+        Ticket ticket = parkingService.park(expected);
+        Car actual = parkingService.pickup(ticket);
+
+        Assert.assertThat(expected, is(actual));
     }
 }

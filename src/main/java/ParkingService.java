@@ -10,10 +10,12 @@ public class ParkingService {
         if (!cars.containsKey(ticket)) {
           throw new IllegalTicketException();
         }
-        return new Car();
+        return cars.get(ticket);
     }
 
     public Ticket park(Car car) {
-        return new Ticket();
+        Ticket ticket = new Ticket();
+        cars.put(ticket, car);
+        return ticket;
     }
 }
