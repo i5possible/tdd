@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class ParkingService {
+public class ParkingLot {
 
     private Map<Ticket, Car> cars = new HashMap<>();
 

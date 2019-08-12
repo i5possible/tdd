@@ -5,13 +5,13 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 
-public class ParkingServiceTest {
+public class ParkingLotTest {
 
     @Test(expected = IllegalTicketException.class)
     public void should_throw_exception_when_pickup_with_invalid_ticket() {
         Ticket invalid = new Ticket();
 
-        ParkingService parkingService = new ParkingService();
+        ParkingLot parkingService = new ParkingLot();
         parkingService.pickup(invalid);
     }
 
@@ -19,7 +19,7 @@ public class ParkingServiceTest {
     public void should_get_different_ticket_when_park_two_cars() {
         Car carA = new Car();
         Car carB = new Car();
-        ParkingService parkingService = new ParkingService();
+        ParkingLot parkingService = new ParkingLot();
         Assert.assertThat(parkingService.park(carA), not(equalTo(parkingService.park(carB))));
     }
 
@@ -27,7 +27,7 @@ public class ParkingServiceTest {
     public void should_get_the_car_by_ticket() {
         Car expected = new Car();
 
-        ParkingService parkingService = new ParkingService();
+        ParkingLot parkingService = new ParkingLot();
         Ticket ticket = parkingService.park(expected);
         Car actual = parkingService.pickup(ticket);
 
@@ -38,7 +38,7 @@ public class ParkingServiceTest {
     public void should_throw_exception_when_park_one_car_two_times() {
         Car car = new Car();
 
-        ParkingService parkingService = new ParkingService();
+        ParkingLot parkingService = new ParkingLot();
         parkingService.park(car);
         parkingService.park(car);
     }
@@ -49,7 +49,7 @@ public class ParkingServiceTest {
         Car carB = new Car();
         Car carC = new Car();
 
-        ParkingService parkingService = new ParkingService();
+        ParkingLot parkingService = new ParkingLot();
         Ticket ticketA = parkingService.park(carA);
         Ticket ticketB = parkingService.park(carB);
         Ticket ticketC = parkingService.park(carC);
@@ -63,7 +63,7 @@ public class ParkingServiceTest {
     public void should_throw_exception_when_park_one_time_and_pick_two_times() {
         Car car = new Car();
 
-        ParkingService parkingService = new ParkingService();
+        ParkingLot parkingService = new ParkingLot();
         Ticket ticket = parkingService.park(car);
 
         parkingService.pickup(ticket);
