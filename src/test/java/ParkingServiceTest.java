@@ -1,7 +1,9 @@
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 
 public class ParkingServiceTest {
 
@@ -21,5 +23,13 @@ public class ParkingServiceTest {
         Ticket ticket = parkingService.park(car);
 
         Assert.assertThat(ticket, is(car));
+    }
+
+    @Test
+    public void should_get_different_ticket_when_park_two_cars() {
+        Car carA = new Car();
+        Car carB = new Car();
+        ParkingService parkingService = new ParkingService();
+        Assert.assertThat(parkingService.park(carA), not(equalTo(parkingService.park(carB))));
     }
 }

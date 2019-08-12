@@ -14,5 +14,6 @@ public class ParkingService {
     }
 
     public Ticket park(Car car) {
+        return new Ticket();
     }
 }
