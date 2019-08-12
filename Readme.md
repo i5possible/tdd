@@ -24,8 +24,8 @@
 ### Tasking List
 - should failed when parking car in a full parking lot when has only one parking lot
 - should failed when parking car and all parking lots are full
-- should parking car more than one parking lot capa city when has two parking lot
+- should parking car more than one parking lot capacity when has two parking lot
 - should failed when parking car in one parking lot and pick up in another parking lot
-- should parking boy pick up car where ever the car is parking
+- should parking boy pick up car wherever the car is parking
 - should failed when pick up car in wrong parking lot
 - should succeeded when pick up car in right parking lot 
