@@ -1,2 +1,2 @@
-public class ParkingLotFullException extends RuntimeException{
+public class ParkingLotFullException extends Exception{
 }

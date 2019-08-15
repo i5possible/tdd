@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class ParkingLot {
 
@@ -9,7 +10,7 @@ public class ParkingLot {
     private static final int DEFAULT_CAPACITY = 10;
 
     public ParkingLot() {
-        new ParkingLot(DEFAULT_CAPACITY);
+        this.capacity = DEFAULT_CAPACITY;
     }
 
     public ParkingLot(int capacity) {
@@ -25,16 +26,16 @@ public class ParkingLot {
         return car;
     }
 
-    public Ticket park(Car car) {
+    public Optional<Ticket> park(Car car) {
         Ticket ticket = new Ticket();
         if (cars.containsValue(car)) {
             throw new IllegalCarException();
         }
         if (capacity <= cars.size()) {
-            throw new ParkingLotFullException();
+            return Optional.empty();
         }
         cars.put(ticket, car);
-        return ticket;
+        return Optional.of(ticket);
 
     }
 }

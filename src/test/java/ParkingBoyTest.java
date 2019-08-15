@@ -1,6 +1,8 @@
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Optional;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
@@ -19,7 +21,7 @@ public class ParkingBoyTest {
         Car carA = new Car();
         Car carB = new Car();
         ParkingBoy parkingBoy = new ParkingBoy();
-        Assert.assertThat(parkingBoy.park(carA), not(equalTo(parkingBoy.park(carB))));
+        Assert.assertThat(parkingBoy.park(carA).get(), not(equalTo(parkingBoy.park(carB).get())));
     }
 
     @Test
@@ -27,7 +29,7 @@ public class ParkingBoyTest {
         Car expected = new Car();
 
         ParkingBoy parkingBoy = new ParkingBoy();
-        Ticket ticket = parkingBoy.park(expected);
+        Ticket ticket = parkingBoy.park(expected).get();
         Car actual = parkingBoy.pickup(ticket);
 
         Assert.assertThat(expected, is(actual));
@@ -49,9 +51,9 @@ public class ParkingBoyTest {
         Car carC = new Car();
 
         ParkingBoy parkingBoy = new ParkingBoy();
-        Ticket ticketA = parkingBoy.park(carA);
-        Ticket ticketB = parkingBoy.park(carB);
-        Ticket ticketC = parkingBoy.park(carC);
+        Ticket ticketA = parkingBoy.park(carA).get();
+        Ticket ticketB = parkingBoy.park(carB).get();
+        Ticket ticketC = parkingBoy.park(carC).get();
 
         Assert.assertThat(carA, is(parkingBoy.pickup(ticketA)));
         Assert.assertThat(carB, is(parkingBoy.pickup(ticketB)));
@@ -63,20 +65,30 @@ public class ParkingBoyTest {
         Car car = new Car();
 
         ParkingBoy parkingBoy = new ParkingBoy();
-        Ticket ticket = parkingBoy.park(car);
+        Ticket ticket = parkingBoy.park(car).get();
 
         parkingBoy.pickup(ticket);
         parkingBoy.pickup(ticket);
     }
 
-    @Test(expected = ParkingLotFullException.class)
-    public void should_throw_exception_when_parking_lots_are_full() {
+    @Test
+    public void should_return_optional_empty_when_parking_lots_are_full() {
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(2), new ParkingLot(3));
         parkingBoy.park(new Car());
         parkingBoy.park(new Car());
         parkingBoy.park(new Car());
         parkingBoy.park(new Car());
         parkingBoy.park(new Car());
+        Optional<Ticket> emptyTicket = parkingBoy.park(new Car());
+        Assert.assertFalse(emptyTicket.isPresent());
+    }
+
+    @Test
+    public void should_park_car_successfully_more_than_one_parking_lot_capacity() {
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(2), new ParkingLot(2));
         parkingBoy.park(new Car());
+        parkingBoy.park(new Car());
+        parkingBoy.park(new Car());
+
     }
 }

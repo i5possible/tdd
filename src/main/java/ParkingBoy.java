@@ -1,12 +1,13 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ParkingBoy {
 
     public List<ParkingLot> parkingLots = new ArrayList<>();
 
     public ParkingBoy() {
-        new ParkingBoy(new ParkingLot());
+        this.parkingLots.add(new ParkingLot());
     }
 
     public ParkingBoy(ParkingLot... parkingLots) {
@@ -19,7 +20,7 @@ public class ParkingBoy {
         return parkingLots.get(0).pickup(ticket);
     }
 
-    public Ticket park(Car car) {
+    public Optional<Ticket> park(Car car) {
         return parkingLots.get(0).park(car);
     }
 

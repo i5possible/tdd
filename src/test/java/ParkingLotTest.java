@@ -1,6 +1,8 @@
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Optional;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
@@ -28,8 +30,8 @@ public class ParkingLotTest {
         Car expected = new Car();
 
         ParkingLot parkingService = new ParkingLot();
-        Ticket ticket = parkingService.park(expected);
-        Car actual = parkingService.pickup(ticket);
+        Optional<Ticket> ticket = parkingService.park(expected);
+        Car actual = parkingService.pickup(ticket.get());
 
         Assert.assertThat(expected, is(actual));
     }
@@ -50,9 +52,9 @@ public class ParkingLotTest {
         Car carC = new Car();
 
         ParkingLot parkingService = new ParkingLot();
-        Ticket ticketA = parkingService.park(carA);
-        Ticket ticketB = parkingService.park(carB);
-        Ticket ticketC = parkingService.park(carC);
+        Ticket ticketA = parkingService.park(carA).get();
+        Ticket ticketB = parkingService.park(carB).get();
+        Ticket ticketC = parkingService.park(carC).get();
 
         Assert.assertThat(carA, is(parkingService.pickup(ticketA)));
         Assert.assertThat(carB, is(parkingService.pickup(ticketB)));
@@ -64,18 +66,19 @@ public class ParkingLotTest {
         Car car = new Car();
 
         ParkingLot parkingService = new ParkingLot();
-        Ticket ticket = parkingService.park(car);
+        Optional<Ticket> park = parkingService.park(car);
+        Ticket ticket = park.get();
 
         parkingService.pickup(ticket);
         parkingService.pickup(ticket);
     }
 
-    @Test(expected = ParkingLotFullException.class)
-    public void should_throw_exception_when_parking_log_is_full() {
+    @Test
+    public void should_return_optional_empty_when_parking_log_is_full() {
 
         ParkingLot parkingService = new ParkingLot(1);
         parkingService.park(new Car());
-        parkingService.park(new Car());
-
+        Optional<Ticket> emptyTicket = parkingService.park(new Car());
+        Assert.assertFalse(emptyTicket.isPresent());
     }
 }
