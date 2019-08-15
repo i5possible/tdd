@@ -34,4 +34,9 @@
 
 ### Requirement
 - A smart parking boy will park to the parking lot which have more capacity. 
-- When the capacity is the same, he will park by parking lot order.   
+- When the capacity is the same, he will park by parking lot order.
+
+### Tasking List
+- should park to the parking lot B if parking lot B has more capacity than parking lot A
+- should park to the parking lot A if parking lot A has more capacity than parking lot B
+- should park to the parking lot A if the the parking lots have the same capacity.   
