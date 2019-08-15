@@ -7,7 +7,6 @@
 - Pick up
 
 ### Tasking List
-
 - should throw exception when pickup with invalid ticket
 - should get different ticket when park two cars
 - should get the car by ticket
@@ -22,17 +21,19 @@
 - Parking lot has capacity
 
 ### Tasking List
+- should act the same as parking lot
 - should failed when parking car in a full parking lot when has only one parking lot
 - should failed when parking car and all parking lots are full
 - should parking car more than one parking lot capacity when has two parking lot
-- should failed when parking car in one parking lot and pick up in another parking lot
 - should parking boy pick up car wherever the car is parking
+- should failed when parking car in one parking lot and pick up in another parking lot
 - should failed when pick up car in wrong parking lot
 - should succeeded when pick up car in right parking lot 
 
 ## Section 3
 
 ### Requirement
+- should act the same as parking lot
 - A smart parking boy will park to the parking lot which have more capacity. 
 - When the capacity is the same, he will park by parking lot order.
 
