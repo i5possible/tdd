@@ -10,25 +10,25 @@ public class ParkingBoyTest {
     public void should_throw_exception_when_pickup_with_invalid_ticket() {
         Ticket invalid = new Ticket();
 
-        ParkingBoy parkingService = new ParkingBoy();
-        parkingService.pickup(invalid);
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.pickup(invalid);
     }
 
     @Test
     public void should_get_different_ticket_when_park_two_cars() {
         Car carA = new Car();
         Car carB = new Car();
-        ParkingBoy parkingService = new ParkingBoy();
-        Assert.assertThat(parkingService.park(carA), not(equalTo(parkingService.park(carB))));
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Assert.assertThat(parkingBoy.park(carA), not(equalTo(parkingBoy.park(carB))));
     }
 
     @Test
     public void should_get_the_car_by_ticket() {
         Car expected = new Car();
 
-        ParkingBoy parkingService = new ParkingBoy();
-        Ticket ticket = parkingService.park(expected);
-        Car actual = parkingService.pickup(ticket);
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Ticket ticket = parkingBoy.park(expected);
+        Car actual = parkingBoy.pickup(ticket);
 
         Assert.assertThat(expected, is(actual));
     }
@@ -37,9 +37,9 @@ public class ParkingBoyTest {
     public void should_throw_exception_when_park_one_car_two_times() {
         Car car = new Car();
 
-        ParkingBoy parkingService = new ParkingBoy();
-        parkingService.park(car);
-        parkingService.park(car);
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.park(car);
+        parkingBoy.park(car);
     }
 
     @Test
@@ -48,26 +48,25 @@ public class ParkingBoyTest {
         Car carB = new Car();
         Car carC = new Car();
 
-        ParkingBoy parkingService = new ParkingBoy();
-        Ticket ticketA = parkingService.park(carA);
-        Ticket ticketB = parkingService.park(carB);
-        Ticket ticketC = parkingService.park(carC);
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Ticket ticketA = parkingBoy.park(carA);
+        Ticket ticketB = parkingBoy.park(carB);
+        Ticket ticketC = parkingBoy.park(carC);
 
-        Assert.assertThat(carA, is(parkingService.pickup(ticketA)));
-        Assert.assertThat(carB, is(parkingService.pickup(ticketB)));
-        Assert.assertThat(carC, is(parkingService.pickup(ticketC)));
+        Assert.assertThat(carA, is(parkingBoy.pickup(ticketA)));
+        Assert.assertThat(carB, is(parkingBoy.pickup(ticketB)));
+        Assert.assertThat(carC, is(parkingBoy.pickup(ticketC)));
     }
 
     @Test(expected = IllegalTicketException.class)
     public void should_throw_exception_when_park_one_time_and_pick_two_times() {
         Car car = new Car();
 
-        ParkingBoy parkingService = new ParkingBoy();
-        Ticket ticket = parkingService.park(car);
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Ticket ticket = parkingBoy.park(car);
 
-        parkingService.pickup(ticket);
-        parkingService.pickup(ticket);
+        parkingBoy.pickup(ticket);
+        parkingBoy.pickup(ticket);
     }
-
 
 }

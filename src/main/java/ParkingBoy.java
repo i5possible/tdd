@@ -1,10 +1,12 @@
 public class ParkingBoy {
-    public Car pickup(Ticket invalid) {
-        return null;
+
+    public ParkingLot parkingLot= new ParkingLot();
+
+    public Car pickup(Ticket ticket) {
+        return parkingLot.pickup(ticket);
     }
 
     public Ticket park(Car car) {
-
-        return null;
+        return parkingLot.park(car);
     }
 }
