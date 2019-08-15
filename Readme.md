@@ -29,3 +29,9 @@
 - should parking boy pick up car wherever the car is parking
 - should failed when pick up car in wrong parking lot
 - should succeeded when pick up car in right parking lot 
+
+## Section 3
+
+### Requirement
+- A smart parking boy will park to the parking lot which have more capacity. 
+- When the capacity is the same, he will park by parking lot order.   
