@@ -69,4 +69,13 @@ public class ParkingLotTest {
         parkingService.pickup(ticket);
         parkingService.pickup(ticket);
     }
+
+    @Test(expected = ParkingLotFullException.class)
+    public void should_throw_exception_when_parking_log_is_full() {
+
+        ParkingLot parkingService = new ParkingLot(1);
+        parkingService.park(new Car());
+        parkingService.park(new Car());
+
+    }
 }
