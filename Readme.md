@@ -22,22 +22,26 @@
 
 ### Tasking List
 - should act the same as parking lot
-- should failed when parking car in a full parking lot when has only one parking lot
-- should failed when parking car and all parking lots are full
-- should parking car more than one parking lot capacity when has two parking lot
+- should parking boy park car failed when parking car and all parking lots are full
+- should parking boy park car more than one parking lot capacity when has two parking lot
 - should parking boy pick up car wherever the car is parking
+
+- should failed when parking car in a full parking lot when has only one parking lot
 - should failed when parking car in one parking lot and pick up in another parking lot
 - should failed when pick up car in wrong parking lot
-- should succeeded when pick up car in right parking lot 
+- should succeeded when pick up car in right parking lot
+
+- should parking car according to the parking lot order
+
 
 ## Section 3
 
 ### Requirement
-- should act the same as parking lot
 - A smart parking boy will park to the parking lot which have more capacity. 
 - When the capacity is the same, e will park car according to the parking lot order.
 
 ### Tasking List
+- should act the same as parking lot
 - should park to the parking lot B if parking lot B has more capacity than parking lot A
 - should park to the parking lot A if parking lot A has more capacity than parking lot B
 - should park to the parking lot A if the the parking lots have the same capacity.
@@ -50,3 +54,12 @@
 - A super parking boy will park to the parking lot have more vacant ratio.   
 - When the vacant ratio is the same, he will park car to the one have more capacity.
 - When the vacant ratio and the capacity is the same, he will park car according to the parking lot order.
+
+### Tasking List
+- should act the same as parking lot
+- should act the same as parking boy 
+- should park to parking lot B if parking lot B has more vacant ratio than parking lot A
+- should park to parking lot A if parking lot A has more vacant ratio than parking lot B
+- should park to parking lot B if parking lot B has the same vacant ratio as parking lot A and has more available capacity than parking lot A
+- should park to parking lot A if parking lot A has the same vacant ratio as parking lot B and has more available capacity than parking lot B
+- should park to parking lot A if parking lot A has the same vacant ratio as parking lot B and has the same available capacity as parking lot B
