@@ -88,7 +88,7 @@ public class ParkingBoyTest {
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(2), new ParkingLot(2));
         parkingBoy.park(new Car());
         parkingBoy.park(new Car());
-        parkingBoy.park(new Car());
-
+        Optional<Ticket> existedTicket = parkingBoy.park(new Car());
+        Assert.assertTrue(existedTicket.isPresent());
     }
 }

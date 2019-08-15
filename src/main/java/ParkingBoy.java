@@ -21,7 +21,13 @@ public class ParkingBoy {
     }
 
     public Optional<Ticket> park(Car car) {
-        return parkingLots.get(0).park(car);
+        for (ParkingLot parkingLot : parkingLots) {
+            Optional<Ticket> ticket = parkingLot.park(car);
+            if (ticket.isPresent()) {
+                return ticket;
+            }
+        }
+        return Optional.empty();
     }
 
 
