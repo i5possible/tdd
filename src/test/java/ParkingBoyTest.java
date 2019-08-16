@@ -105,4 +105,16 @@ public class ParkingBoyTest {
         Car actual = parkingBoy.pickup(ticket).get();
         assertThat(actual, equalTo(expected));
     }
+
+    @Test
+    public void should_park_car_according_to_the_order() {
+        int initCapacity = 3;
+        ParkingLot parkingLotA = new ParkingLot(initCapacity);
+        ParkingLot parkingLotB = new ParkingLot(initCapacity);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLotA, parkingLotB);
+        parkingBoy.park(new Car());
+        parkingBoy.park(new Car());
+        parkingBoy.park(new Car());
+        assertThat(parkingLotB.getCapacity(), is(initCapacity));
+    }
 }

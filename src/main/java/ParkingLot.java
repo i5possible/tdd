@@ -35,4 +35,8 @@ public class ParkingLot {
         return Optional.of(ticket);
 
     }
+
+    public int getCapacity() {
+        return capacity - cars.size();
+    }
 }
