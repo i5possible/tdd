@@ -6,14 +6,16 @@ import java.util.Optional;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
+import static org.junit.Assert.*;
 
 public class ParkingBoyTest {
-    @Test(expected = IllegalTicketException.class)
+    @Test
     public void should_throw_exception_when_pickup_with_invalid_ticket() {
         Ticket invalid = new Ticket();
 
         ParkingBoy parkingBoy = new ParkingBoy();
-        parkingBoy.pickup(invalid);
+        Optional<Car> actual = parkingBoy.pickup(invalid);
+        assertFalse(actual.isPresent());
     }
 
     @Test
@@ -21,7 +23,7 @@ public class ParkingBoyTest {
         Car carA = new Car();
         Car carB = new Car();
         ParkingBoy parkingBoy = new ParkingBoy();
-        Assert.assertThat(parkingBoy.park(carA).get(), not(equalTo(parkingBoy.park(carB).get())));
+        assertThat(parkingBoy.park(carA).get(), not(equalTo(parkingBoy.park(carB).get())));
     }
 
     @Test
@@ -30,18 +32,19 @@ public class ParkingBoyTest {
 
         ParkingBoy parkingBoy = new ParkingBoy();
         Ticket ticket = parkingBoy.park(expected).get();
-        Car actual = parkingBoy.pickup(ticket);
+        Car actual = parkingBoy.pickup(ticket).get();
 
-        Assert.assertThat(expected, is(actual));
+        assertThat(expected, is(actual));
     }
 
-    @Test(expected = IllegalCarException.class)
+    @Test
     public void should_throw_exception_when_park_one_car_two_times() {
         Car car = new Car();
 
         ParkingBoy parkingBoy = new ParkingBoy();
         parkingBoy.park(car);
-        parkingBoy.park(car);
+        Optional<Ticket> actual = parkingBoy.park(car);
+        assertFalse(actual.isPresent());
     }
 
     @Test
@@ -55,20 +58,21 @@ public class ParkingBoyTest {
         Ticket ticketB = parkingBoy.park(carB).get();
         Ticket ticketC = parkingBoy.park(carC).get();
 
-        Assert.assertThat(carA, is(parkingBoy.pickup(ticketA)));
-        Assert.assertThat(carB, is(parkingBoy.pickup(ticketB)));
-        Assert.assertThat(carC, is(parkingBoy.pickup(ticketC)));
+        assertThat(carA, is(parkingBoy.pickup(ticketA).get()));
+        assertThat(carB, is(parkingBoy.pickup(ticketB).get()));
+        assertThat(carC, is(parkingBoy.pickup(ticketC).get()));
     }
 
-    @Test(expected = IllegalTicketException.class)
-    public void should_throw_exception_when_park_one_time_and_pick_two_times() {
+    @Test
+    public void should_return_optional_empty_when_park_one_time_and_pick_two_times() {
         Car car = new Car();
 
         ParkingBoy parkingBoy = new ParkingBoy();
         Ticket ticket = parkingBoy.park(car).get();
 
         parkingBoy.pickup(ticket);
-        parkingBoy.pickup(ticket);
+        Optional<Car> actual = parkingBoy.pickup(ticket);
+        assertFalse(actual.isPresent());
     }
 
     @Test
@@ -80,7 +84,7 @@ public class ParkingBoyTest {
         parkingBoy.park(new Car());
         parkingBoy.park(new Car());
         Optional<Ticket> emptyTicket = parkingBoy.park(new Car());
-        Assert.assertFalse(emptyTicket.isPresent());
+        assertFalse(emptyTicket.isPresent());
     }
 
     @Test
@@ -89,6 +93,16 @@ public class ParkingBoyTest {
         parkingBoy.park(new Car());
         parkingBoy.park(new Car());
         Optional<Ticket> existedTicket = parkingBoy.park(new Car());
-        Assert.assertTrue(existedTicket.isPresent());
+        assertTrue(existedTicket.isPresent());
+    }
+
+    @Test
+    public void should_parking_boy_pick_up_car_parking_at_the_third_parking_lot() {
+        ParkingLot thirdParkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(), new ParkingLot(), thirdParkingLot);
+        Car expected = new Car();
+        Ticket ticket = thirdParkingLot.park(expected).get();
+        Car actual = parkingBoy.pickup(ticket).get();
+        assertThat(actual, equalTo(expected));
     }
 }

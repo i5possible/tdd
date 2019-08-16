@@ -17,21 +17,18 @@ public class ParkingLot {
         this.capacity = capacity;
     }
 
-    public Car pickup(Ticket ticket) {
+    public Optional<Car> pickup(Ticket ticket) {
         if (!cars.containsKey(ticket)) {
-          throw new IllegalTicketException();
+          return Optional.empty();
         }
         Car car = cars.get(ticket);
         cars.remove(ticket);
-        return car;
+        return Optional.of(car);
     }
 
     public Optional<Ticket> park(Car car) {
         Ticket ticket = new Ticket();
-        if (cars.containsValue(car)) {
-            throw new IllegalCarException();
-        }
-        if (capacity <= cars.size()) {
+        if (cars.containsValue(car) || capacity <= cars.size()) {
             return Optional.empty();
         }
         cars.put(ticket, car);

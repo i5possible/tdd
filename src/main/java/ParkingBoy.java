@@ -16,8 +16,14 @@ public class ParkingBoy {
         }
     }
 
-    public Car pickup(Ticket ticket) {
-        return parkingLots.get(0).pickup(ticket);
+    public Optional<Car> pickup(Ticket ticket) {
+        for (ParkingLot parkingLot : parkingLots) {
+            Optional<Car> car = parkingLot.pickup(ticket);
+            if (car.isPresent()) {
+                return car;
+            }
+        }
+        return Optional.empty();
     }
 
     public Optional<Ticket> park(Car car) {
