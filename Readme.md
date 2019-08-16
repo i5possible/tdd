@@ -13,6 +13,7 @@
 - should throw exception when park one car two times
 - should park and pickup three cars
 - should throw exception when park one time and pick up two times
+- should failed when pick up car in wrong parking lot
 
 ## Section 2
 
@@ -28,11 +29,7 @@
 
 - should failed when parking car in a full parking lot when has only one parking lot
 - should failed when parking car in one parking lot and pick up in another parking lot
-- should failed when pick up car in wrong parking lot
-- should succeeded when pick up car in right parking lot
-
 - should parking car according to the parking lot order
-
 
 ## Section 3
 
