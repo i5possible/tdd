@@ -84,4 +84,13 @@ public class ParkingLotTest {
         Optional<Ticket> emptyTicket = parkingService.park(new Car());
         assertFalse(emptyTicket.isPresent());
     }
+
+    @Test
+    public void should_failed_when_pickup_car_in_the_wrong_parking_lot() {
+        ParkingLot parkingLotA = new ParkingLot(1);
+        ParkingLot parkingLotB = new ParkingLot(1);
+        Ticket ticket = parkingLotA.park(new Car()).get();
+        Optional<Car> actual = parkingLotB.pickup(ticket);
+        assertFalse(actual.isPresent());
+    }
 }
