@@ -2,15 +2,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ParkingBoy {
+public class DummyParkingBoy {
 
     public List<ParkingLot> parkingLots = new ArrayList<>();
 
-    public ParkingBoy() {
+    public DummyParkingBoy() {
         this.parkingLots.add(new ParkingLot());
     }
 
-    public ParkingBoy(ParkingLot... parkingLots) {
+    public DummyParkingBoy(ParkingLot... parkingLots) {
         for (ParkingLot parkingLot : parkingLots) {
             this.parkingLots.add(parkingLot);
         }
