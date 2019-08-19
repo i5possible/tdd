@@ -1,28 +1,9 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 
-public class SmartParkingBoy {
-
-    private List<ParkingLot> parkingLots = new ArrayList<>();
-
-    public SmartParkingBoy() {
-        this.parkingLots.add(new ParkingLot());
-    }
+public class SmartParkingBoy extends AbstractParkingBoy{
 
     public SmartParkingBoy(ParkingLot... parkingLots) {
-        this.parkingLots.addAll(Arrays.asList(parkingLots));
-    }
-
-    public Optional<Car> pickup(Ticket ticket) {
-        for (ParkingLot parkingLot : parkingLots) {
-            Optional<Car> car = parkingLot.pickup(ticket);
-            if (car.isPresent()) {
-                return car;
-            }
-        }
-        return Optional.empty();
+        super(parkingLots);
     }
 
     public Optional<Ticket> park(Car car) {
@@ -33,6 +14,4 @@ public class SmartParkingBoy {
 
         return candidate.isPresent() ? candidate.get().park(car) : Optional.empty();
     }
-
-
 }
