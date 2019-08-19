@@ -3,15 +3,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-public class DummyParkingBoy {
+public class SmartParkingBoy {
 
     private List<ParkingLot> parkingLots = new ArrayList<>();
 
-    public DummyParkingBoy() {
+    public SmartParkingBoy() {
         this.parkingLots.add(new ParkingLot());
     }
 
-    public DummyParkingBoy(ParkingLot... parkingLots) {
+    public SmartParkingBoy(ParkingLot... parkingLots) {
         this.parkingLots.addAll(Arrays.asList(parkingLots));
     }
 
@@ -26,13 +26,12 @@ public class DummyParkingBoy {
     }
 
     public Optional<Ticket> park(Car car) {
-        for (ParkingLot parkingLot : parkingLots) {
-            Optional<Ticket> ticket = parkingLot.park(car);
-            if (ticket.isPresent()) {
-                return ticket;
-            }
-        }
-        return Optional.empty();
+        Optional<ParkingLot> candidate = parkingLots.stream()
+                .sorted((parkingLotA, parkingLotB) -> parkingLotB.getCapacity() - parkingLotA.getCapacity())
+                .filter(ParkingLot::isAvailable)
+                .findFirst();
+
+        return candidate.isPresent() ? candidate.get().park(car) : Optional.empty();
     }
 
 
