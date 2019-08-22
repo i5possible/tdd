@@ -48,15 +48,15 @@
 
 ### Requirement
 - should act the same as parking lot
-- A super parking boy will park to the parking lot have more vacant ratio.   
-- When the vacant ratio is the same, he will park car to the one have more capacity.
-- When the vacant ratio and the capacity is the same, he will park car according to the parking lot order.
+- A super parking boy will park to the parking lot have more vacancy ratio.   
+- When the vacancy ratio is the same, he will park car to the one have more capacity.
+- When the vacancy ratio and the capacity is the same, he will park car according to the parking lot order.
 
 ### Tasking List
 - should act the same as parking lot
 - should act the same as parking boy 
-- should park to parking lot B if parking lot B has more vacant ratio than parking lot A
-- should park to parking lot A if parking lot A has more vacant ratio than parking lot B
-- should park to parking lot B if parking lot B has the same vacant ratio as parking lot A and has more available capacity than parking lot A
-- should park to parking lot A if parking lot A has the same vacant ratio as parking lot B and has more available capacity than parking lot B
-- should park to parking lot A if parking lot A has the same vacant ratio as parking lot B and has the same available capacity as parking lot B
+- should park to parking lot B if parking lot B has more vacancy ratio than parking lot A
+- should park to parking lot A if parking lot A has more vacancy ratio than parking lot B
+- should park to parking lot B if parking lot B has the same vacancy ratio as parking lot A and has more available capacity than parking lot A
+- should park to parking lot A if parking lot A has the same vacancy ratio as parking lot B and has more available capacity than parking lot B
+- should park to parking lot A if parking lot A has the same vacancy ratio as parking lot B and has the same available capacity as parking lot B

@@ -9,9 +9,9 @@ public class SuperParkingBoy extends AbstractParkingBoy{
     public Optional<Ticket> park(Car car) {
         Optional<ParkingLot> candidate = parkingLots.stream()
                 .sorted((parkingLotA, parkingLotB) -> {
-                    if (parkingLotB.getVacantRatio() > parkingLotA.getVacantRatio()) {
+                    if (parkingLotB.getVacancyRatio() > parkingLotA.getVacancyRatio()) {
                         return 1;
-                    } else if (parkingLotB.getVacantRatio() < parkingLotA.getVacantRatio()) {
+                    } else if (parkingLotB.getVacancyRatio() < parkingLotA.getVacancyRatio()) {
                         return -1;
                     } else {
                         return parkingLotB.getCapacity() - parkingLotA.getCapacity();
