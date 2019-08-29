@@ -1,6 +1,7 @@
+import java.util.Comparator;
 import java.util.Optional;
 
-public class SuperParkingBoy extends AbstractParkingBoy{
+public class SuperParkingBoy extends AbstractParkingBoy {
 
     public SuperParkingBoy(ParkingLot... parkingLots) {
         super(parkingLots);
@@ -8,16 +9,8 @@ public class SuperParkingBoy extends AbstractParkingBoy{
 
     public Optional<Ticket> park(Car car) {
         Optional<ParkingLot> candidate = parkingLots.stream()
-                .sorted((parkingLotA, parkingLotB) -> {
-                    if (parkingLotB.getVacancyRatio() > parkingLotA.getVacancyRatio()) {
-                        return 1;
-                    } else if (parkingLotB.getVacancyRatio() < parkingLotA.getVacancyRatio()) {
-                        return -1;
-                    } else {
-                        return parkingLotB.getCapacity() - parkingLotA.getCapacity();
-                    }
-
-                })
+                .sorted(Comparator.comparing(ParkingLot::getVacancyRatio).reversed()
+                        .thenComparing(ParkingLot::getCapacity).reversed())
                 .filter(ParkingLot::isAvailable)
                 .findFirst();
 

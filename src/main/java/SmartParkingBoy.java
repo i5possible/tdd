@@ -1,3 +1,4 @@
+import java.util.Comparator;
 import java.util.Optional;
 
 public class SmartParkingBoy extends AbstractParkingBoy{
@@ -8,7 +9,7 @@ public class SmartParkingBoy extends AbstractParkingBoy{
 
     public Optional<Ticket> park(Car car) {
         Optional<ParkingLot> candidate = parkingLots.stream()
-                .sorted((parkingLotA, parkingLotB) -> parkingLotB.getCapacity() - parkingLotA.getCapacity())
+                .sorted(Comparator.comparing(ParkingLot::getCapacity).reversed())
                 .filter(ParkingLot::isAvailable)
                 .findFirst();
 

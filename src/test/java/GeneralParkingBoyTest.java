@@ -13,10 +13,10 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(value = Parameterized.class)
-public class ParkingBoyTest {
+public class GeneralParkingBoyTest {
     private String clazzName;
 
-    public ParkingBoyTest(String clazzName) {
+    public GeneralParkingBoyTest(String clazzName) {
         this.clazzName = clazzName;
     }
 
