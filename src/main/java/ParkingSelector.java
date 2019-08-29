@@ -3,5 +3,5 @@ import java.util.Optional;
 
 @FunctionalInterface
 public interface ParkingSelector {
-    Optional<ParkingLot> selectParkingLog(List<ParkingLot> parkingLotList);
+    Optional<ParkingLot> selectParkingLog(List<ParkingLot> parkingLots);
 }

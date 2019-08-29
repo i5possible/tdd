@@ -26,4 +26,8 @@ public class ParkingBoy {
     public Optional<Ticket> park(Car car) {
         return parkingSelector.selectParkingLog(parkingLots).flatMap(parkingLot -> parkingLot.park(car));
     }
+
+    public boolean isAvailable() {
+        return parkingLots.stream().anyMatch(ParkingLot::isAvailable);
+    }
 }

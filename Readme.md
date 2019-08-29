@@ -2,7 +2,7 @@
 
 ## Section 1
 
-### Requirement
+### Requirement: parking lot
 - Park
 - Pick up
 
@@ -17,7 +17,7 @@
 
 ## Section 2
 
-### Requirement
+### Requirement: dummy parking boy
 - Parking boy help park and pickup
 - Parking lot has capacity
 
@@ -33,7 +33,7 @@
 
 ## Section 3
 
-### Requirement
+### Requirement: smart parking boy
 - A smart parking boy will park to the parking lot which have more capacity. 
 - When the capacity is the same, e will park car according to the parking lot order.
 
@@ -46,8 +46,7 @@
 
 ## Section 4
 
-### Requirement
-- should act the same as parking lot
+### Requirement: super parking boy
 - A super parking boy will park to the parking lot have more vacancy ratio.   
 - When the vacancy ratio is the same, he will park car to the one have more capacity.
 - When the vacancy ratio and the capacity is the same, he will park car according to the parking lot order.
@@ -60,3 +59,18 @@
 - should park to parking lot B if parking lot B has the same vacancy ratio as parking lot A and has more available capacity than parking lot A
 - should park to parking lot A if parking lot A has the same vacancy ratio as parking lot B and has more available capacity than parking lot B
 - should park to parking lot A if parking lot A has the same vacancy ratio as parking lot B and has the same available capacity as parking lot B
+
+
+
+## Section 5
+
+### Requirement: parking manager
+- should delegate parking boy to park car first
+- should park car to the private parking lot if parking boys can't park car successfully
+
+### Tasking List
+- should act the same as parking lot
+- should act the same as parking boy
+- should delegate parking boy to park car if they can park car
+- should park car to the private parking lot if they can't park car
+- should can't park car if they can't park car and the private parking lot is full
